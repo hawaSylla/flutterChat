@@ -1,0 +1,33 @@
+
+  List<List<Color>> gradientColors = [
+    [Colors.indigo, Colors.indigoAccent, Colors.grey[900]!],
+    [Colors.amber, Colors.amberAccent, Colors.grey[900]!],
+    [Colors.blue, Colors.blueAccent, Colors.white],
+    [Colors.white70, Colors.grey, Colors.grey[900]!],
+    [Colors.orange, Colors.orangeAccent, Colors.white],
+    [Colors.red, Colors.redAccent, Colors.grey[900]!],
+  ];
+
+  Widget profileCards(
+          String index, String name, String position, String company) =>
+      Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.blue, Colors.indigo, Colors.white70],
+          ),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            Image.asset(
+              "lib/images/profiles/$index.jpg",
+              fit: BoxFit.cover,
+            ),
+            Text(name),
+            Text(position),
+            Text(company),
+          ],
+        ),
+      );

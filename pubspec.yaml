@@ -42,6 +42,7 @@ dependencies:
   swipeable_card_stack: ^0.0.5
   flutter_swipable: ^1.2.1
   swipe_deck: ^1.1.0
+  appinio_swiper: ^1.1.1
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,112 @@
+const IMAGES = [
+  "buisness",
+  "compSci",
+  "engineer",
+  "scientist",
+  "surgeon",
+  "woman"
+];
+const names = [
+  "buisness Man",
+  "Nerd",
+  "geek",
+  "science Tist",
+  "Doctor Doctor",
+  "woman"
+];
+const positions = [
+  "Business Man",
+  "Software Developer",
+  "engineer",
+  "scientist",
+  "Surgeon",
+  "woman"
+];
+const companies = [
+  "buissTech",
+  "ComputersInc",
+  "EnGring",
+  "Science town",
+  "Doctor Doctor",
+  "woman"
+];
+
+
+
+
+
+
+SwipeableCardsSection(
+                  context: context,
+                  items: [
+                    ProfileCard(
+                        img: IMAGES[3],
+                        userName: names[3],
+                        position: positions[3],
+                        company: companies[3]),
+                    profileCards(
+                        "buisness", "buisness Man", "Buisness Nman", "company"),
+                    profileCards("compSci", "Nerd", "Software Engineer",
+                        "ComptutersInc"),
+                    profileCards("engineer", "geek", "Engineer", "EnGring"),
+                  ],
+                  onCardSwiped: (dir, index, widget) {
+                    cardController.addItem(profileCards(IMAGES[index],
+                        names[index], positions[index], companies[index]));
+                  },
+                  enableSwipeUp: false,
+                  enableSwipeDown: false,
+                ),
+
+
+
+SwipeableCardsSection(
+                  cardController: _cardController,
+                  context: context,
+                  items: [
+                    ProfileCard(
+                        img: IMAGES[3],
+                        userName: names[3],
+                        position: positions[3],
+                        company: companies[3]),
+                    ProfileCard(
+                        img: IMAGES[0],
+                        userName: names[0],
+                        position: positions[0],
+                        company: companies[0]),
+                    ProfileCard(
+                        img: IMAGES[1],
+                        userName: names[1],
+                        position: positions[1],
+                        company: companies[1]),
+                    ProfileCard(
+                        img: IMAGES[2],
+                        userName: names[2],
+                        position: positions[2],
+                        company: companies[2]),
+                  ],
+                  onCardSwiped: (dir, index, widget) {
+                    if (counter < 6) {
+                      _cardController.addItem(ProfileCard(
+                          img: IMAGES[index],
+                          userName: names[index],
+                          position: positions[index],
+                          company: companies[index]));
+                      counter++;
+                    }
+                    if (dir == Direction.left) {
+                      print(
+                          'onDisliked ${(widget as ProfileCard).userName} $index');
+                    } else if (dir == Direction.right) {
+                      print(
+                          'onLiked ${(widget as ProfileCard).userName} $index');
+                    } else if (dir == Direction.up) {
+                      print('onUp ${(widget as ProfileCard).userName} $index');
+                    } else if (dir == Direction.down) {
+                      print(
+                          'onDown ${(widget as ProfileCard).userName} $index');
+                    }
+                  },
+                  enableSwipeUp: false,
+                  enableSwipeDown: false,
+                ),
