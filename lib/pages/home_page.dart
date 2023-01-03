@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:chat_flutter/components/example_candidate_model.dart';
 import 'package:chat_flutter/components/profile_card.dart';
+import 'package:chat_flutter/components/swiping_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  void _loadCards() async {
+  void _loadCards() {
     for (ExampleCandidateModel candidate in candidates) {
       cards.add(
         ProfileCard(
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Text(
                       'Logged in as: ${user.email!}',
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ],
                 ),
@@ -171,7 +172,6 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height * 0.50,
                 child: AppinioSwiper(
                   unlimitedUnswipe: true,
-                  allowUnswipe: true,
                   controller: controller,
                   unswipe: _unswipe,
                   cards: cards,
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(
                     left: 25,
                     right: 25,
-                    top: 50,
+                    top: 25,
                     bottom: 40,
                   ),
                 ),
@@ -199,53 +199,20 @@ class _HomePageState extends State<HomePage> {
                   padding:
                       const EdgeInsets.only(left: 20, right: 20, bottom: 20),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 5,
-                      ),
-                      Container(
                         width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.grey,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withAlpha(20),
-                                  spreadRadius: 5,
-                                  blurRadius: 10)
-                            ]),
-                        child: Icon(
-                          Icons.not_interested,
-                          color: Colors.white,
-                          size: 50,
-                        ),
                       ),
-                      // SizedBox(
-                      //   width: 15,
-                      // ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.amber,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.orange.withAlpha(50),
-                                  spreadRadius: 7,
-                                  blurRadius: 10)
-                            ]),
-                        child: Icon(
-                          Icons.lightbulb,
-                          color: Colors.white,
-                          size: 50,
-                        ),
-                      ),
+                      swipeLeftButton(controller),
                       SizedBox(
-                        width: 5,
+                        width: 50,
                       ),
+                      swipeRightButton(controller),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      unswipeButton(controller),
                     ],
                   ),
                 ),
