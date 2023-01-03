@@ -70,8 +70,13 @@ class _HomePageState extends State<HomePage> {
                   height: 90,
                   width: 90,
                   decoration: BoxDecoration(
-                      color: Colors.amberAccent,
-                      borderRadius: BorderRadius.circular(50)),
+                    color: Colors.amberAccent,
+                    borderRadius: BorderRadius.circular(50),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            'https://media.istockphoto.com/id/1362937229/photo/i-love-my-job.jpg?b=1&s=170667a&w=0&k=20&c=GYqe3l5jtsPKzR3xyed35H_M98jiV4eyqYBvH1KvrSk='),
+                        fit: BoxFit.fill),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -90,7 +95,7 @@ class _HomePageState extends State<HomePage> {
               'Browse',
               style: TextStyle(
                 color: Colors.black87,
-                fontSize: 16,
+                fontSize: 20,
               ),
             ),
             onTap: () {
@@ -169,7 +174,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.55,
@@ -189,7 +194,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 220,
+                height: 200,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: const Border(
