@@ -62,14 +62,30 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
+            padding: const EdgeInsets.only(bottom: 20),
             decoration: const BoxDecoration(color: Colors.black87),
-            child: Text(
-              user.email!,
-              style: TextStyle(fontSize: 20, color: Colors.amber[400]),
+            child: Column(
+              children: [
+                Container(
+                  height: 90,
+                  width: 90,
+                  decoration: BoxDecoration(
+                      color: Colors.amberAccent,
+                      borderRadius: BorderRadius.circular(50)),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  user.email!,
+                  style: const TextStyle(fontSize: 20, color: Colors.amber),
+                ),
+              ],
             ),
           ),
           ListTile(
-            leading: Icon(Icons.emoji_people_rounded, color: Colors.black54),
+            leading:
+                const Icon(Icons.emoji_people_rounded, color: Colors.black54),
             title: const Text(
               'Browse',
               style: TextStyle(
@@ -104,7 +120,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.people, color: Colors.black54),
+            leading: const Icon(Icons.people, color: Colors.black54),
             title: const Text(
               'My Mentors',
               style: TextStyle(
@@ -120,7 +136,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings, color: Colors.black54),
+            leading: const Icon(Icons.settings, color: Colors.black54),
             title: const Text(
               'Settings',
               style: TextStyle(
@@ -138,7 +154,7 @@ class _HomePageState extends State<HomePage> {
         ],
       )),
       appBar: AppBar(
-          title: Text('Browse'),
+          title: const Text('Browse'),
           backgroundColor: Colors.black87,
           actions: [
             IconButton(
@@ -152,24 +168,11 @@ class _HomePageState extends State<HomePage> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //Probably make this into a welcome widget later
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Welcome !',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    Text(
-                      'Logged in as: ${user.email!}',
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ],
-                ),
+              const SizedBox(
+                height: 15,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.50,
+                height: MediaQuery.of(context).size.height * 0.55,
                 child: AppinioSwiper(
                   unlimitedUnswipe: true,
                   controller: controller,
@@ -184,13 +187,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 120,
-                decoration: const BoxDecoration(
+                height: 220,
+                decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border(
+                    border: const Border(
                         top: BorderSide(
                       color: Colors.black54,
                       width: .25,
@@ -201,15 +203,15 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: 80,
+                      const SizedBox(
+                        width: 60,
                       ),
                       swipeLeftButton(controller),
-                      SizedBox(
+                      const SizedBox(
                         width: 50,
                       ),
                       swipeRightButton(controller),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       unswipeButton(controller),

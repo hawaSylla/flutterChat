@@ -22,16 +22,18 @@ Widget swipeRightButton(AppinioSwiperController controller) {
   return SwipingButton(
     onTap: () => controller.swipeRight(),
     child: Container(
-      width: 80,
-      height: 80,
+      width: 100,
+      height: 100,
       decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.amber,
+          color: Color.fromARGB(255, 255, 193, 7),
           boxShadow: [
             BoxShadow(
-                color: Colors.orange.withAlpha(50),
-                spreadRadius: 7,
-                blurRadius: 10)
+              color: Colors.orange.withAlpha(50),
+              spreadRadius: 10,
+              blurRadius: 20,
+              offset: const Offset(0, 20),
+            ) // changes position of shadow)
           ]),
       child: const Icon(
         Icons.lightbulb,
@@ -48,14 +50,16 @@ Widget swipeLeftButton(AppinioSwiperController controller) {
   return SwipingButton(
     onTap: () => controller.swipeLeft(),
     child: Container(
-      width: 80,
-      height: 80,
+      width: 100,
+      height: 100,
       decoration:
           BoxDecoration(shape: BoxShape.circle, color: Colors.red, boxShadow: [
         BoxShadow(
-            color: Colors.redAccent.withAlpha(25),
-            spreadRadius: 5,
-            blurRadius: 10)
+          color: Colors.redAccent.withAlpha(50),
+          spreadRadius: 10,
+          blurRadius: 20,
+          offset: const Offset(0, 20),
+        )
       ]),
       child: const Icon(
         Icons.close_rounded,
