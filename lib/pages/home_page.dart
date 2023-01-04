@@ -2,8 +2,13 @@ import 'dart:developer';
 
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:chat_flutter/components/example_candidate_model.dart';
+import 'package:chat_flutter/components/navigation.dart';
 import 'package:chat_flutter/components/profile_card.dart';
 import 'package:chat_flutter/components/swiping_buttons.dart';
+import 'package:chat_flutter/pages/auth_page.dart';
+import 'package:chat_flutter/pages/chats_page.dart';
+import 'package:chat_flutter/pages/login_page.dart';
+import 'package:chat_flutter/services/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser!;
+  late String userEmail;
 
   final AppinioSwiperController controller = AppinioSwiperController();
 
@@ -24,6 +30,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _loadCards();
+    userEmail = user.email!;
+    DatabaseService(uid: user.uid).updateUserData(userEmail);
+
     super.initState();
   }
 
@@ -52,11 +61,13 @@ class _HomePageState extends State<HomePage> {
   //sign user out
   void signUserOut() {
     FirebaseAuth.instance.signOut();
+    nextScreenReplacement(context, AuthPage());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
       drawer: Drawer(
           child: ListView(
         padding: EdgeInsets.zero,
@@ -95,7 +106,7 @@ class _HomePageState extends State<HomePage> {
               'Browse',
               style: TextStyle(
                 color: Colors.black87,
-                fontSize: 20,
+                fontSize: 16,
               ),
             ),
             onTap: () {
@@ -118,10 +129,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             onTap: () {
+              nextScreen(context, const ChatsPage());
               // Update the state of the app.
               // ...
-
-              Navigator.pop(context);
             },
           ),
           ListTile(
@@ -159,6 +169,7 @@ class _HomePageState extends State<HomePage> {
         ],
       )),
       appBar: AppBar(
+          centerTitle: true,
           title: const Text('Browse'),
           backgroundColor: Colors.black87,
           actions: [

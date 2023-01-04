@@ -1,6 +1,7 @@
 import 'package:chat_flutter/components/my_button.dart';
 import 'package:chat_flutter/components/my_textfield.dart';
 import 'package:chat_flutter/components/square_tile.dart';
+import 'package:chat_flutter/services/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -19,6 +20,9 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   //controllers
+
+  final nameController = TextEditingController();
+
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
@@ -40,8 +44,9 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       //check if password is successfully confirmed
       if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
+        User user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text))
+            .user!;
       } else {
         //pop the circle
         Navigator.pop(context);
@@ -106,7 +111,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 25,
                 ),
-                //username text field
+
+                //email text field
                 MyTextField(
                   controller: emailController,
                   hintText: 'Email',
